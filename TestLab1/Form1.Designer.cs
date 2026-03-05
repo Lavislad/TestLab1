@@ -99,16 +99,7 @@ namespace TestLab1
             deliveryManager = new DeliveryManager();
             UpdateDeliveriesList();
         }
-
-        private void UpdateDeliveriesList()
-        {
-            deliveriesListBox.Items.Clear();
-            foreach (var delivery in deliveryManager.Deliveries)
-            {
-                deliveriesListBox.Items.Add($"{delivery.CustomerName} - {delivery.Address} ({ delivery.Status})");
-            }
-        }
+        #endregion
     }
 }
-        #endregion
 
