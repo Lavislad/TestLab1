@@ -43,11 +43,13 @@ namespace TestLab1
             {
                 Location = new System.Drawing.Point(10, 10),
                 Width = 150,
+                Text = "Имя"
             };
             addressTextBox = new TextBox
             {
                 Location = new System.Drawing.Point(170, 10),
                 Width = 200,
+                Text = "Адрес"
             };
             deliveryDatePicker = new DateTimePicker
             {
@@ -96,6 +98,15 @@ namespace TestLab1
             this.Controls.Add(deliveriesListBox);
             deliveryManager = new DeliveryManager();
             UpdateDeliveriesList();
+        }
+
+        private void UpdateDeliveriesList()
+        {
+            deliveriesListBox.Items.Clear();
+            foreach (var delivery in deliveryManager.Deliveries)
+            {
+                deliveriesListBox.Items.Add($"{delivery.CustomerName} - {delivery.Address} ({ delivery.Status})");
+            }
         }
     }
 }
