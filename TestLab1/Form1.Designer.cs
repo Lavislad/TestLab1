@@ -1,4 +1,6 @@
-﻿namespace TestLab1
+﻿using System.Windows.Forms;
+
+namespace TestLab1
 {
     partial class Form1
     {
@@ -20,21 +22,82 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором форм Windows
+        #region Form
 
-        /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
-        /// </summary>
+        private DeliveryManager deliveryManager;
+        private TextBox customerNameTextBox;
+        private TextBox addressTextBox;
+        private DateTimePicker deliveryDatePicker;
+        private ComboBox statusComboBox;
+        private Button addDeliveryButton;
+        private Button removeDeliveryButton;
+        private Button updateStatusButton;
+        private ListBox deliveriesListBox;
+
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = "Управление доставкой";
+            this.Width = 600;
+            this.Height = 500;
+            customerNameTextBox = new TextBox
+            {
+                Location = new System.Drawing.Point(10, 10),
+                Width = 150,
+            };
+            addressTextBox = new TextBox
+            {
+                Location = new System.Drawing.Point(170, 10),
+                Width = 200,
+            };
+            deliveryDatePicker = new DateTimePicker
+            {
+                Location = new System.Drawing.Point(380, 10)
+            };
+            statusComboBox = new ComboBox
+            {
+                Location = new System.Drawing.Point(10, 40),
+                Width = 100,
+                Items = { "Новый", "В пути", "Доставлен" }
+            };
+            addDeliveryButton = new Button
+            {
+                Location = new System.Drawing.Point(10, 70),
+                Text = "Добавить",
+                Width = 100
+            };
+            addDeliveryButton.Click += AddDeliveryButton_Click;
+            removeDeliveryButton = new Button
+            {
+                Location = new System.Drawing.Point(120, 70),
+                Text = "Удалить",
+                Width = 100
+            };
+            removeDeliveryButton.Click += RemoveDeliveryButton_Click;
+            updateStatusButton = new Button
+            {
+                Location = new System.Drawing.Point(220, 70),
+                Text = "Обновить статус",
+                Width = 120
+            };
+            updateStatusButton.Click += UpdateStatusButton_Click;
+            deliveriesListBox = new ListBox
+            {
+                Location = new System.Drawing.Point(10, 100),
+                Width = 560,
+                Height = 250
+            };
+            this.Controls.Add(customerNameTextBox);
+            this.Controls.Add(addressTextBox);
+            this.Controls.Add(deliveryDatePicker);
+            this.Controls.Add(statusComboBox);
+            this.Controls.Add(addDeliveryButton);
+            this.Controls.Add(removeDeliveryButton);
+            this.Controls.Add(updateStatusButton);
+            this.Controls.Add(deliveriesListBox);
+            deliveryManager = new DeliveryManager();
+            UpdateDeliveriesList();
         }
-
-        #endregion
     }
 }
+        #endregion
 
