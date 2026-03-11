@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -53,8 +54,9 @@ namespace TestLab1
             {
                 string customerName = parts[0].Trim();
                 string address = parts[1].Trim();
-                var deliveryToRemove = deliveryManager.Deliveries.Find(d => d.CustomerName ==
-                customerName && d.Address == address);
+                string pattern = @"\s*\([^()]+\)$";
+                address = Regex.Replace(address, pattern, "");
+                var deliveryToRemove = deliveryManager.Deliveries.Find(d => d.CustomerName == customerName && d.Address == address);
                 if (deliveryToRemove != null)
                 {
                     try
