@@ -84,14 +84,14 @@ namespace TestLab1
             {
                 string customerName = parts[0].Trim();
                 string address = parts[1].Trim();
-                var deliveryToUpdate = deliveryManager.Deliveries.Find(d => d.CustomerName ==
-                customerName && d.Address == address);
+                string pattern = @"\s*\([^()]+\)$";
+                address = Regex.Replace(address, pattern, "");
+                var deliveryToUpdate = deliveryManager.Deliveries.Find(d => d.CustomerName == customerName && d.Address == address);
                 if (deliveryToUpdate != null)
                 {
-                    DeliveryStatus newStatus = (DeliveryStatus)Enum.Parse(typeof(DeliveryStatus),
-                    statusComboBox.SelectedItem.ToString());
                     try
                     {
+                        DeliveryStatus newStatus = (DeliveryStatus)Enum.Parse(typeof(DeliveryStatus), statusComboBox.SelectedItem.ToString());
                         deliveryManager.UpdateDeliveryStatus(deliveryToUpdate, newStatus);
                         UpdateDeliveriesList();
                     }
