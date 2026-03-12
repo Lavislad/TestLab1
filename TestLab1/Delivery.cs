@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,11 @@ namespace TestLab1
 {
     public enum DeliveryStatus
     {
+        [Description("Новый")]
         Новый,
+        [Description("В пути")]
         В_пути,
+        [Description("Доставлен")]
         Доставлен
     }
     internal class Delivery
